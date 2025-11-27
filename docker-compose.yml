@@ -1,23 +1,26 @@
-version: "3"
 services:
   gateway:
     build:
-      context: gateway/docker/development/nginx
+      context: gateway/docker
+      dockerfile: development/nginx/Dockerfile
     ports:
-      - "8087:8087"
-      - "8083:8083"
+      - "8080:8080"
+      - "8081:8081"
     depends_on:
       - frontend
       - api
+
   frontend:
     build:
-      context: frontend/docker/development/nginx
+      context: frontend/docker
+      dockerfile: development/nginx/Dockerfile
     volumes:
       - ./frontend:/app
 
   api:
     build:
-      context: api/docker/development/nginx
+      context: api/docker
+      dockerfile: development/nginx/Dockerfile
     volumes:
       - ./api:/app
     depends_on:
@@ -25,6 +28,14 @@ services:
 
   api-php-fpm:
     build:
-      context: api/docker/development/php-fpm
+      context: api/docker
+      dockerfile: development/php-fpm/Dockerfile
+    volumes:
+      - ./api:/app
+
+  api-php-cli:
+    build:
+      context: api/docker
+      dockerfile: development/php-cli/Dockerfile
     volumes:
       - ./api:/app

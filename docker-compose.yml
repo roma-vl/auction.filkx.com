@@ -1,17 +1,4 @@
 services:
-#  gateway:
-#    build:
-#      context: gateway/docker
-#      dockerfile: development/nginx/Dockerfile
-#    networks:
-#      - filkx
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.auction-gateway.rule=Host(`dev.auction.filkx.com`)"
-#      - "traefik.http.routers.auction-gateway.entrypoints=websecure"
-#      - "traefik.http.routers.auction-gateway.tls.certresolver=devresolver"
-#      - "traefik.http.services.auction-gateway.loadbalancer.server.port=8080"
-
   frontend:
     build:
       context: frontend/docker

@@ -9,6 +9,8 @@ services:
     depends_on:
       - frontend
       - api
+    networks:
+      - filkx
 
   frontend:
     build:
@@ -16,6 +18,8 @@ services:
       dockerfile: development/nginx/Dockerfile
     volumes:
       - ./frontend:/app
+    networks:
+      - filkx
 
   api:
     build:
@@ -25,6 +29,8 @@ services:
       - ./api:/app
     depends_on:
       - api-php-fpm
+    networks:
+      - filkx
 
   api-php-fpm:
     build:
@@ -32,6 +38,8 @@ services:
       dockerfile: development/php-fpm/Dockerfile
     volumes:
       - ./api:/app
+    networks:
+      - filkx
 
   api-php-cli:
     build:
@@ -39,3 +47,23 @@ services:
       dockerfile: development/php-cli/Dockerfile
     volumes:
       - ./api:/app
+    networks:
+      - filkx
+
+  api-postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: auction
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: auction
+    volumes:
+      - api-postgres:/var/lib/postgresql/data
+    ports:
+      - "54321:5432"
+    networks:
+      - filkx
+networks:
+  filkx:
+    driver: bridge
+volumes:
+  api-postgres:

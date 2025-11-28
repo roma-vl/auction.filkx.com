@@ -31,6 +31,15 @@ services:
       - "traefik.http.routers.auction-api.tls.certresolver=devresolver"
       - "traefik.http.services.auction-api.loadbalancer.server.port=80"
 
+  frontend-node-cli:
+    build:
+      context: frontend/docker
+      dockerfile: development/node/Dockerfile
+    volumes:
+      - ./frontend:/app
+    networks:
+      - filkx
+
   api-php-fpm:
     build:
       context: api/docker

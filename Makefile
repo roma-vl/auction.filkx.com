@@ -27,3 +27,11 @@ api-composer-install:
 pint:
 	docker-compose run --rm api-php-cli ./vendor/bin/pint --parallel --max-processes=4
 
+frontend-install:
+	docker-compose run --rm frontend-node-cli npm install
+
+frontend-dev:
+	docker-compose run --rm frontend-node-cli npm run dev
+
+frontend-build:
+	docker-compose run --rm frontend-node-cli npm run build

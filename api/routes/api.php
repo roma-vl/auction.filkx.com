@@ -8,6 +8,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/test', function (Request $request) {
+    $f= 'wqed';
     return [
         'test' => 'test',
     ];

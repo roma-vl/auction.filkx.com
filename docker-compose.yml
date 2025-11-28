@@ -1,16 +1,16 @@
 services:
-  gateway:
-    build:
-      context: gateway/docker
-      dockerfile: development/nginx/Dockerfile
-    ports:
-      - "8080:8080"
-      - "8081:8081"
-    depends_on:
-      - frontend
-      - api
-    networks:
-      - filkx
+#  gateway:
+#    build:
+#      context: gateway/docker
+#      dockerfile: development/nginx/Dockerfile
+#    networks:
+#      - filkx
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.auction-gateway.rule=Host(`dev.auction.filkx.com`)"
+#      - "traefik.http.routers.auction-gateway.entrypoints=websecure"
+#      - "traefik.http.routers.auction-gateway.tls.certresolver=devresolver"
+#      - "traefik.http.services.auction-gateway.loadbalancer.server.port=8080"
 
   frontend:
     build:
@@ -20,6 +20,12 @@ services:
       - ./frontend:/app
     networks:
       - filkx
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.auction-frontend.rule=Host(`dev.auction.filkx.com`)"
+      - "traefik.http.routers.auction-frontend.entrypoints=websecure"
+      - "traefik.http.routers.auction-frontend.tls.certresolver=devresolver"
+      - "traefik.http.services.auction-frontend.loadbalancer.server.port=80"
 
   api:
     build:
@@ -31,6 +37,12 @@ services:
       - api-php-fpm
     networks:
       - filkx
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.auction-api.rule=Host(`dev.api.auction.filkx.com`)"
+      - "traefik.http.routers.auction-api.entrypoints=websecure"
+      - "traefik.http.routers.auction-api.tls.certresolver=devresolver"
+      - "traefik.http.services.auction-api.loadbalancer.server.port=80"
 
   api-php-fpm:
     build:
@@ -62,8 +74,10 @@ services:
       - "54321:5432"
     networks:
       - filkx
+
 networks:
   filkx:
-    driver: bridge
+    external: true
+
 volumes:
   api-postgres:

@@ -2,6 +2,7 @@ init: docker-down-clear docker-pull docker-build docker-up api-init
 up: docker-up
 down: docker-down
 restart: down up
+lint: pint
 
 docker-up:
 	docker-compose up -d
@@ -22,3 +23,7 @@ api-init: api-composer-install
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
+
+pint:
+	docker-compose run --rm api-php-cli ./vendor/bin/pint --parallel --max-processes=4
+

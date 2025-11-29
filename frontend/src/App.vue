@@ -4,9 +4,7 @@ import HomePage from "@/pages/HomePage.vue";
 </script>
 
 <template>
-<Index></Index>
+  <Index />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

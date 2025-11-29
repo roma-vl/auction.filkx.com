@@ -2,7 +2,9 @@
   <div
     class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-gray-200 dark:border-gray-700 hover:border-amber-300 dark:hover:border-amber-600 cursor-pointer group"
   >
-    <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
+    <div
+      class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300"
+    >
       {{ icon }}
     </div>
 
@@ -19,6 +21,6 @@
 defineProps({
   icon: String,
   name: String,
-  items: Number
+  items: Number,
 });
 </script>

@@ -1,18 +1,19 @@
 <script setup>
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect } from "vue";
 
 const isDark = ref(
-  localStorage.theme === 'dark' ||
-    (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches),
 );
 
 watchEffect(() => {
   if (isDark.value) {
-    document.documentElement.classList.add('dark');
-    localStorage.theme = 'dark';
+    document.documentElement.classList.add("dark");
+    localStorage.theme = "dark";
   } else {
-    document.documentElement.classList.remove('dark');
-    localStorage.theme = 'light';
+    document.documentElement.classList.remove("dark");
+    localStorage.theme = "light";
   }
 });
 
@@ -25,7 +26,9 @@ function toggleDark() {
   <button
     type="button"
     class="p-2 rounded-md text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 transition-colors"
-    :aria-label="isDark ? $t('Switch to light mode') : $t('Switch to dark mode')"
+    :aria-label="
+      isDark ? $t('Switch to light mode') : $t('Switch to dark mode')
+    "
     @click="toggleDark"
   >
     <svg

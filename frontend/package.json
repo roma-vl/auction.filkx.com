@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky",
+    "lint": "npx eslint  --config=eslint.config.js --fix --no-cache",
+    "prettier": "prettier --write . ",
+    "format": "npm run prettier && npm run lint"
   },
   "dependencies": {
     "@vueuse/core": "^14.1.0",
     "axios": "^1.13.2",
     "dayjs": "^1.11.19",
+    "eslint-plugin-vue": "^10.6.2",
     "install": "^0.13.0",
     "npm": "^11.6.4",
     "pinia": "^3.0.4",
@@ -21,6 +26,9 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.1",
+    "eslint": "^9.39.1",
+    "husky": "^9.1.7",
+    "prettier": "^3.7.2",
     "vite": "^7.2.4"
   }
 }

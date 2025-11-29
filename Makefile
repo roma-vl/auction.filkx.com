@@ -30,7 +30,7 @@ pint:
 frontend-init: frontend-install
 
 format:
-	docker-compose run --rm frontend-node-cli npm run format
+	docker compose run --rm frontend-node-cli npm run format
 
 frontend-install:
 	docker compose run --rm frontend-node-cli npm install

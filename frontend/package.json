@@ -13,22 +13,30 @@
     "format": "npm run prettier && npm run lint"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.2.0",
+    "@tailwindcss/typography": "^0.5.19",
     "@vueuse/core": "^14.1.0",
     "axios": "^1.13.2",
     "dayjs": "^1.11.19",
     "eslint-plugin-vue": "^10.6.2",
     "install": "^0.13.0",
+    "lucide-vue-next": "^0.555.0",
     "npm": "^11.6.4",
     "pinia": "^3.0.4",
     "vue": "^3.5.24",
+    "vue-i18n": "^9.14.5",
     "vue-router": "^4.6.3",
     "vue-toastification": "^2.0.0-beta.6"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
     "@vitejs/plugin-vue": "^6.0.1",
+    "autoprefixer": "^10.4.22",
     "eslint": "^9.39.1",
     "husky": "^9.1.7",
+    "postcss": "^8.5.6",
     "prettier": "^3.7.2",
+    "tailwindcss": "^3.4.18",
     "vite": "^7.2.4"
   }
 }

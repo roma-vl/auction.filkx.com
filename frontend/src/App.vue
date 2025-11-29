@@ -1,9 +1,11 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import HomePage from "./pages/HomePage.vue";
+import BaseLayout from "./layouts/BaseLayout.vue";
 </script>
 
 <template>
+  <BaseLayout>
   <div>
     <a href="https://vite.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -14,6 +16,7 @@ import HomePage from "./pages/HomePage.vue";
   </div>
   <HelloWorld msg="Vite + Vue" />
    <HomePage></HomePage>
+    </BaseLayout>
 </template>
 
 <style scoped>

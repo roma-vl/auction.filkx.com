@@ -19,6 +19,7 @@ services:
     build:
       context: api/docker
       dockerfile: development/nginx/Dockerfile
+    restart: always
     volumes:
       - ./api:/app
     depends_on:
@@ -36,6 +37,7 @@ services:
     build:
       context: frontend/docker
       dockerfile: development/node/Dockerfile
+    restart: always
     volumes:
       - ./frontend:/app
     networks:
@@ -45,6 +47,7 @@ services:
     build:
       context: frontend/docker
       dockerfile: development/node/Dockerfile
+    restart: always
     volumes:
       - ./frontend:/app
     networks:
@@ -64,6 +67,7 @@ services:
     build:
       context: api/docker
       dockerfile: development/php-fpm/Dockerfile
+    restart: always
     volumes:
       - ./api:/app
     networks:
@@ -73,6 +77,7 @@ services:
     build:
       context: api/docker
       dockerfile: development/php-cli/Dockerfile
+    restart: always
     user: "1000:1000"
     volumes:
       - ./api:/app
@@ -81,6 +86,7 @@ services:
 
   api-postgres:
     image: postgres:16-alpine
+    restart: always
     environment:
       POSTGRES_USER: auction
       POSTGRES_PASSWORD: secret

@@ -2,7 +2,7 @@ init: docker-down-clear docker-pull docker-build docker-up api-init frontend-ini
 up: docker-up
 down: docker-down
 restart: down up
-lint: pint
+lint: pint format
 
 docker-up:
 	docker compose up -d
@@ -28,6 +28,9 @@ pint:
 	docker compose run --rm api-php-cli ./vendor/bin/pint --parallel --max-processes=4
 
 frontend-init: frontend-install
+
+format:
+	docker-compose run --rm frontend-node-cli npm run format
 
 frontend-install:
 	docker compose run --rm frontend-node-cli npm install

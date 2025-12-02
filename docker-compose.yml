@@ -1,6 +1,6 @@
 services:
 #  Це юоли є dist але треба вирубити "frontend-dev"
-#  frontend:
+#  auction-frontend:
 #    build:
 #      context: frontend/docker
 #      dockerfile: development/nginx/Dockerfile
@@ -15,7 +15,7 @@ services:
 #      - "traefik.http.routers.auction-frontend.tls.certresolver=devresolver"
 #      - "traefik.http.services.auction-frontend.loadbalancer.server.port=80"
 
-  api:
+  auction-api:
     build:
       context: api/docker
       dockerfile: development/nginx/Dockerfile
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./api:/app
     depends_on:
-      - api-php-fpm
+      - auction-api-php-fpm
     networks:
       - filkx
     labels:
@@ -33,7 +33,7 @@ services:
       - "traefik.http.routers.auction-api.tls.certresolver=devresolver"
       - "traefik.http.services.auction-api.loadbalancer.server.port=80"
 
-  frontend-node-cli:
+  auction-frontend-node-cli:
     build:
       context: frontend/docker
       dockerfile: development/node/Dockerfile
@@ -43,7 +43,7 @@ services:
     networks:
       - filkx
 
-  frontend-dev:
+  auction-frontend-dev:
     build:
       context: frontend/docker
       dockerfile: development/node/Dockerfile
@@ -63,7 +63,7 @@ services:
 
     command: ["npm", "run", "dev"]
 
-  api-php-fpm:
+  auction-api-php-fpm:
     build:
       context: api/docker
       dockerfile: development/php-fpm/Dockerfile
@@ -73,7 +73,7 @@ services:
     networks:
       - filkx
 
-  api-php-cli:
+  auction-api-php-cli:
     build:
       context: api/docker
       dockerfile: development/php-cli/Dockerfile
@@ -84,7 +84,7 @@ services:
     networks:
       - filkx
 
-  api-postgres:
+  auction-api-postgres:
     image: postgres:16-alpine
     restart: always
     environment:
